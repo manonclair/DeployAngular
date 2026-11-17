@@ -1,0 +1,43 @@
+<div class="container color-dark">
+  <div class="col">
+    <p>Un élément de liste</p>
+  </div>
+  <div class="col">
+    <p>Ma liste d'éléments ({{ nbItems }})</p>
+  </div>
+</div>
+
+<div class="container color-light">
+  <div class="col">
+    <p class="sm">Un nouvel élément de liste</p>
+  </div>
+  <div class="col">
+    @for (objectif of active.objectifs; track objectif; let index = $index) {
+    <p
+      class="life-container"
+      animate.enter="animation-ajout"
+      (click)="consulterActivite(index)"
+    >
+      {{ objectif }}
+    </p>
+    }
+  </div>
+  <div class="col">
+    <form (submit)="$event.preventDefault()">
+      <input
+        type="text"
+        class="txt"
+        name="objectif"
+        placeholder="..."
+        [(ngModel)]="objectifText"
+      />
+      <p>{{ objectifText }}</p>
+      <input
+        type="submit"
+        class="btn"
+        [value]="btnText"
+        (click)="ajoutItem()"
+      />
+    </form>
+  </div>
+</div>
